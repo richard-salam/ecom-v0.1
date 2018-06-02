@@ -1,14 +1,25 @@
 package com.richie.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "UserDetails")
 public class EntityClass {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "Id")
 	private int id;
+	
+	@Column(name = "Name")
 	private String name;
+	
+	@Column(name = "EmailId")
 	private String emailId;
 
 	public int getId() {

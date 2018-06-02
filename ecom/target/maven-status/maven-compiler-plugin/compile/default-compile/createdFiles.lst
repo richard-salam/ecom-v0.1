@@ -1,3 +1,7 @@
 com\richie\config\ConfigClass.class
+com\richie\DAO\EntityDAOImpl.class
 com\richie\entity\EntityClass.class
+com\richie\DAO\EntityDAO.class
+com\richie\service\EntityService.class
+com\richie\service\EntityServiceImpl.class
 com\richie\controller\ControllerClass.class

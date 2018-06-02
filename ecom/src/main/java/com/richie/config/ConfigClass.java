@@ -12,25 +12,27 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.richie.entity.EntityClass;
 
 @Configuration
+@EnableTransactionManagement
 @ComponentScan(basePackages = "com.richie")
 public class ConfigClass {
-	
-	/*private static final Logger log = Logger.getLogger(ConfigClass.class);*/
-	
+
+	/* private static final Logger log = Logger.getLogger(ConfigClass.class); */
+
 	@Bean(name = "dataSource")
 	public DataSource getDataSource() throws BeanInstantiationException, BeanDefinitionParsingException {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/ecom");
 		dataSource.setUsername("root");
 		dataSource.setPassword("open");
-				
+
 		return dataSource;
 
 	}
@@ -42,8 +44,7 @@ public class ConfigClass {
 		hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		hibernateProperties.setProperty("hibernate.format_sql", "true");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-		
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
 
 		LocalSessionFactoryBuilder localSessionFactory = new LocalSessionFactoryBuilder(getDataSource());
 		localSessionFactory.addProperties(hibernateProperties);
