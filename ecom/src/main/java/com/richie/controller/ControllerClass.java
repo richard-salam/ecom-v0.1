@@ -21,7 +21,7 @@ public class ControllerClass {
 	@Autowired
 	private EntityService entityService;
 
-	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
+	@RequestMapping(value = {"/","home" }, method = RequestMethod.GET)
 	public ModelAndView goHome() throws IOException {
 
 		ModelAndView model = new ModelAndView();
