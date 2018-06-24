@@ -15,6 +15,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.richie.entity.EntityClass;
+import com.richie.entity.LoginEntity;
 
 @Configuration
 @EnableTransactionManagement
@@ -49,6 +50,8 @@ public class ConfigClass {
 		LocalSessionFactoryBuilder localSessionFactory = new LocalSessionFactoryBuilder(getDataSource());
 		localSessionFactory.addProperties(hibernateProperties);
 		localSessionFactory.addAnnotatedClass(EntityClass.class);
+		localSessionFactory.addAnnotatedClass(LoginEntity.class);
+
 
 		try {
 

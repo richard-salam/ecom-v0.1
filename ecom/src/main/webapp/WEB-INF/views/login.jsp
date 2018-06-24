@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Register here</title>
 </head>
 <body>
 
@@ -16,19 +16,22 @@
 
 			<table>
 				<tr>
-				<td>User Name</td>
-				<td><input type="text" name="userName"/>
+					<td>User Name</td>
+					<td><input type="text" name="userName" />
 				</tr>
 				<tr>
 				<tr>
-				<td>Password</td>
-				<td><input type="password" name="password"/>
+					<td>Password</td>
+					<td><input type="password" name="password" />
 				</tr>
 				<tr>
-				<td><input type="submit" value="Submit" />
+					<td><input type="submit" name="Submit" />
 				</tr>
 			</table>
 			<div style="color: red">${error}</div>
+			<p align="center">
+				<a href="register">New User?</a>
+			</p>
 		</div>
 
 	</form:form>
