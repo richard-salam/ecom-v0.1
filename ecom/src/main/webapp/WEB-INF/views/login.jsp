@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<form:form name="submitForm" method="POST">
+	<form:form action="loginCheck" method="POST" modelAttribute="value">
 
 		<div align="center">
 

@@ -1,5 +1,8 @@
 package com.richie.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.richie.entity.LoginEntity;
 import com.richie.service.LoginService;
-
-
 
 @Controller
 public class LoginController {
@@ -28,7 +29,7 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	/*@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView submit(ModelAndView model, @ModelAttribute("loginEntity") LoginEntity loginEntity) {
 
 		if (loginEntity != null && loginEntity.getUserName() != null && loginEntity.getPassword() != null) {
@@ -49,7 +50,38 @@ public class LoginController {
 			model.setViewName("login");
 			return model;
 		}
-	}
+	}*/
+
+	@RequestMapping(value = { "/loginCheck" }, method ={ RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView loginCheck(@ModelAttribute("value") LoginEntity value) throws IOException {
+
+		boolean tf = false;
+		ModelAndView model = new ModelAndView();
+		List<LoginEntity> list = loginService.listUser();
+
+		for (LoginEntity user : list) {
+			if (user != null && user.getUserName() != null && user.getPassword() != null) {
+
+				if (user.getUserName().equals(value.getUserName()) && user.getPassword().equals(value.getPassword())) {
+
+					tf = true;
+
+				}
+			}
+		}
+		
+		if(tf == true){
+			
+			return new ModelAndView("redirect:/");
+			
+		} else {
+
+					model.addObject("error", "Invalid Details");
+					model.setViewName("login");
+					return model;
+				}
+		} 
+
 
 	@RequestMapping(value = "**/register", method = RequestMethod.GET)
 	public ModelAndView addUser() {
